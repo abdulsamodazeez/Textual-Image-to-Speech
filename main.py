@@ -65,7 +65,7 @@ def edge_recognize_printed_page(image):
     def speak(text):
       engine = pyttsx3.init()
       rate = engine.getProperty('rate')
-      engine.setProperty('rate', rate-50)
+      engine.setProperty('rate', 125)
       voices = engine.getProperty('voices')
       engine.setProperty('voice', voices[0].id)
       engine.say(text)
@@ -102,7 +102,7 @@ def edge_recognize_printed_book(image):
     def speak(text):
       engine = pyttsx3.init()
       rate = engine.getProperty('rate')
-      engine.setProperty('rate', rate-50)
+      engine.setProperty('rate', 125)
       voices = engine.getProperty('voices')
       engine.setProperty('voice', voices[0].id)
       engine.say(text)
