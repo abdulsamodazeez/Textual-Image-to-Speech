@@ -6,8 +6,6 @@ import cv2
 import imutils
 import pytesseract
 import pyttsx3
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
 
 #Recognized printed text from a page using OpenCV and PyTesseract
 def edge_recognize_printed_page(image):
@@ -111,11 +109,12 @@ def edge_recognize_printed_book(image):
     return speak(text)
 
 # Recognize printed text on the edge
-def edge_print_read(image):
+def edge_print_read(path):
     # First, try to recognized text from a page. If no page was detected,
     # then recognize text from a book
+    # image_path = '"%s"' % path 
+    # print("image_path_quotes:", image_path)
     try:
-        
-        edge_recognize_printed_page("image")
+        edge_recognize_printed_page(path)
     except:
-        edge_recognize_printed_book("image")
+        edge_recognize_printed_book(path)
