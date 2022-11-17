@@ -5,13 +5,12 @@ from glob import glob as glob
 import cv2
 import imutils
 import pytesseract
-import pyttsx3
 
 #Recognized printed text from a page using OpenCV and PyTesseract
 def edge_recognize_printed_page(image):
     # load the image and compute the ratio of the old height to the new height,
     # clone it, and resize it
-    print("Load image at" + image)
+    # print("Load image at" + image)
     image = cv2.imread(image)
     ratio = image.shape[0] / 500.0
     orig = image.copy()
@@ -53,30 +52,18 @@ def edge_recognize_printed_page(image):
     warped = (warped > T).astype("uint8") * 255
 
     # Recognize printed text using PyTesseract
-    print("Recognizing Text...")
+    # print("Recognizing Text...")
     text = pytesseract.image_to_string(warped)
-    print("Recognized Text:\n\n" + text)
+    # print("Recognized Text:\n\n" + text)
+    return text
 
-    # Speak the recognized text using pyttsx3
-    print("Speaking Text")
-    
-    
-    def speak(text):
-      engine = pyttsx3.init()
-      rate = engine.getProperty('rate')
-      engine.setProperty('rate', 125)
-      voices = engine.getProperty('voices')
-      engine.setProperty('voice', voices[0].id)
-      engine.say(text)
-      engine.runAndWait()
-    return speak(text)
 
 
 # Recognized printed text from a book using OpenCV and PyTesseract
 def edge_recognize_printed_book(image):
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
-    print("Load image at" + image)
+    # print("Load image at" + image)
     image = cv2.imread(image)
     
     orig = image.copy()
@@ -89,32 +76,19 @@ def edge_recognize_printed_book(image):
     orig = (orig > T).astype("uint8") * 255
 
     # Recognize printed text using PyTesseract
-    print("Recognizing Text...")
+    # print("Recognizing Text....")
     text = pytesseract.image_to_string(orig)
-    print("Recognized Text:\n\n" + text)
+    # print("Recognized Text:\n\n" + text)
+    return text
 
-    # Speak the recognized text using pyttsx3
-    print("Speaking Text")
-    
 
-   
-    def speak(text):
-      engine = pyttsx3.init()
-      rate = engine.getProperty('rate')
-      engine.setProperty('rate', 125)
-      voices = engine.getProperty('voices')
-      engine.setProperty('voice', voices[0].id)
-      engine.say(text)
-      engine.runAndWait()
-    return speak(text)
 
 # Recognize printed text on the edge
 def edge_print_read(path):
-    # First, try to recognized text from a page. If no page was detected,
-    # then recognize text from a book
-    # image_path = '"%s"' % path 
-    # print("image_path_quotes:", image_path)
+
     try:
-        edge_recognize_printed_page(path)
+        text = edge_recognize_printed_page(path)
     except:
-        edge_recognize_printed_book(path)
+        text = edge_recognize_printed_book(path)
+
+    return text

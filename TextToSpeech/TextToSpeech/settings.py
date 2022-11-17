@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_cleanup',
     'rest_framework',
     'speech.apps.SpeechConfig',
     'django.contrib.admin',
