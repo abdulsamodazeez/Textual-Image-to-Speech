@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0exz1z+=g#n*70av@li2jbo=@%$u88ygj9m_919sc5$*k(*4ir
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['samadtexttospeech.herokuapp.com/']
+ALLOWED_HOSTS = ['samadtexttospeech.herokuapp.com']
 
 
 # Application definition
